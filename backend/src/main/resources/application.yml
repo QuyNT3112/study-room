@@ -1,0 +1,32 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: studyroom-backend
+  datasource:
+    url: ${DB_URL:jdbc:h2:file:./data/studyroom;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;AUTO_SERVER=TRUE}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: ${H2_CONSOLE_ENABLED:true}
+      path: /h2-console
+
+app:
+  jwt:
+    # Default secret is for local MVP development only; override JWT_SECRET in production.
+    secret: ${JWT_SECRET:c3R1ZHlyb29tLW12cC1kZXYtanVzdC1mb3ItbG9jYWwtdGVzdGluZy0yMDI2LXNlY3JldC1rZXk=}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://localhost:3000}
+  seed:
+    enabled: ${SEED_ENABLED:true}

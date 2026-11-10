@@ -1,0 +1,26 @@
+# Environment files
+.env
+backend/.env
+frontend/.env
+
+# Local database files
+backend/data/
+*.mv.db
+*.trace.db
+
+# Build outputs
+backend/target/
+backend/bin/
+frontend/dist/
+frontend/node_modules/
+*.tsbuildinfo
+
+# IDE & OS
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+.DS_Store
+Thumbs.db

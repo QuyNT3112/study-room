@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: studyroom-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-studyroom}
+      POSTGRES_USER: ${DB_USERNAME:-studyroom}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-studyroom123}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - studyroom_pgdata:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+
+volumes:
+  studyroom_pgdata:
